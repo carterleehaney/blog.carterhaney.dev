@@ -1,30 +1,339 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Custom CSS for Carter's Blog
+ * Dark theme with pixel fonts matching carterhaney.dev
  */
 
-/* You can override the default Infima variables here. */
+/* Import Google Fonts - Pixel style fonts from carterhaney.dev */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Font Variables */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --font-pixel: 'VT323', monospace;
+  --font-pixel-bold: 'Press Start 2P', monospace;
+  
+  /* Dark theme colors matching carterhaney.dev */
+  --ifm-color-primary: #ffffff;
+  --ifm-color-primary-dark: #e6e6e6;
+  --ifm-color-primary-darker: #d9d9d9;
+  --ifm-color-primary-darkest: #b3b3b3;
+  --ifm-color-primary-light: #ffffff;
+  --ifm-color-primary-lighter: #ffffff;
+  --ifm-color-primary-lightest: #ffffff;
+  
+  /* Background and text */
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #0a0a0a;
+  --ifm-font-color-base: #ffffff;
+  --ifm-font-color-secondary: #b3b3b3;
+  
+  /* Navbar */
+  --ifm-navbar-background-color: #000000;
+  --ifm-navbar-link-color: #ffffff;
+  --ifm-navbar-link-hover-color: #b3b3b3;
+  
+  /* Footer */
+  --ifm-footer-background-color: #000000;
+  --ifm-footer-color: #ffffff;
+  --ifm-footer-link-color: #b3b3b3;
+  --ifm-footer-link-hover-color: #ffffff;
+  
+  /* Code */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+  
+  /* Cards and UI */
+  --ifm-card-background-color: #111111;
+  --ifm-card-border-radius: 4px;
+  
+  /* Links */
+  --ifm-link-color: #ff6b6b;
+  --ifm-link-hover-color: #ff8585;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode - same as light since we're always dark */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #ffffff;
+  --ifm-color-primary-dark: #e6e6e6;
+  --ifm-color-primary-darker: #d9d9d9;
+  --ifm-color-primary-darkest: #b3b3b3;
+  --ifm-color-primary-light: #ffffff;
+  --ifm-color-primary-lighter: #ffffff;
+  --ifm-color-primary-lightest: #ffffff;
+  
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #0a0a0a;
+  --ifm-font-color-base: #ffffff;
+  --ifm-font-color-secondary: #b3b3b3;
+  
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Force dark theme always */
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #000000;
+}
+
+/* ============================================
+   TYPOGRAPHY - Pixel fonts for headers/nav
+   ============================================ */
+
+/* Site title in navbar */
+.navbar__title {
+  font-family: var(--font-pixel);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Navbar links */
+.navbar__link {
+  font-family: var(--font-pixel);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+/* Main headings outside of blog content */
+h1, h2, h3 {
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+}
+
+/* Blog list page title */
+.blogPostsListTitle {
+  font-family: var(--font-pixel-bold) !important;
+  font-size: 2rem !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Blog post titles in list */
+.blogPostTitle {
+  font-family: var(--font-pixel);
+  font-size: 1.8rem;
+}
+
+/* Inside blog articles - keep readable fonts for body */
+article p,
+article li,
+article blockquote {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  line-height: 1.7;
+}
+
+/* Footer */
+.footer {
+  background-color: #000000;
+  border-top: 1px solid #222222;
+}
+
+.footer__title {
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer__link-item {
+  font-family: var(--font-pixel);
+}
+
+/* ============================================
+   NAVBAR STYLING
+   ============================================ */
+
+.navbar {
+  background-color: #000000;
+  border-bottom: 1px solid #222222;
+  box-shadow: none;
+}
+
+.navbar--dark {
+  background-color: #000000;
+}
+
+/* Navbar logo/avatar */
+.navbar__logo img {
+  border-radius: 50%;
+  border: 2px solid #333333;
+}
+
+/* ============================================
+   BLOG STYLING
+   ============================================ */
+
+/* Blog post cards/items */
+.blogPostItem {
+  background-color: #0a0a0a;
+  border: 1px solid #222222;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Blog metadata */
+.blogPostMeta {
+  font-family: var(--font-pixel);
+  color: var(--ifm-font-color-secondary);
+}
+
+/* Tags */
+.tag {
+  font-family: var(--font-pixel);
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  color: #ffffff;
+}
+
+.tag:hover {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.button {
+  font-family: var(--font-pixel);
+  letter-spacing: 1px;
+  border-radius: 0;
+  border: 2px solid #ffffff;
+  text-transform: uppercase;
+}
+
+.button--primary {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.button--primary:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.button--secondary {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.button--secondary:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+
+.pagination-nav__link {
+  font-family: var(--font-pixel);
+  background-color: #0a0a0a;
+  border: 1px solid #333333;
+}
+
+.pagination-nav__link:hover {
+  background-color: #1a1a1a;
+  border-color: #ffffff;
+}
+
+.pagination-nav__sublabel {
+  font-family: var(--font-pixel);
+}
+
+.pagination-nav__label {
+  font-family: var(--font-pixel);
+}
+
+/* ============================================
+   TABLE OF CONTENTS
+   ============================================ */
+
+.table-of-contents {
+  font-family: var(--font-pixel);
+}
+
+.table-of-contents__link {
+  color: var(--ifm-font-color-secondary);
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: #ffffff;
+}
+
+/* ============================================
+   SIDEBAR (for future use)
+   ============================================ */
+
+.menu__link {
+  font-family: var(--font-pixel);
+}
+
+/* ============================================
+   SEARCH (if enabled)
+   ============================================ */
+
+.navbar__search-input {
+  font-family: var(--font-pixel);
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  color: #ffffff;
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+
+pre {
+  background-color: #0d0d0d !important;
+  border: 1px solid #222222;
+}
+
+code {
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  color: #ff6b6b;
+}
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+/* ============================================
+   AUTHOR CARD
+   ============================================ */
+
+.avatar__photo {
+  border: 2px solid #333333;
+}
+
+.avatar__name {
+  font-family: var(--font-pixel);
+}
+
+.avatar__subtitle {
+  font-family: var(--font-pixel);
+  color: var(--ifm-font-color-secondary);
 }

@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Carter\'s Blog',
+  title: "Carter's Blog",
   tagline: 'A blog about my projects, competitions, and other cool things.',
   favicon: 'img/favicon.ico',
 
@@ -45,13 +45,7 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/carterleehaney/blog.carterhaney.dev',
-        },
+        docs: false, // Disable docs plugin
         blog: {
           routeBasePath: '/', // Serve blog at root URL
           showReadingTime: true,
@@ -59,7 +53,8 @@ const config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          
+          blogTitle: "Carter's Blog",
+          blogDescription: 'A blog about my projects, competitions, and other cool things.',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -78,24 +73,34 @@ const config = {
       // Replace with your project's social card
       image: 'img/pencil-cat.jpg',
       colorMode: {
-        respectPrefersColorScheme: true,
+        defaultMode: 'dark',
+        disableSwitch: true, // Force dark mode
+        respectPrefersColorScheme: false,
       },
       navbar: {
-        title: 'Carter\'s Blog',
+        title: "Carter's Blog",
         logo: {
-          alt: 'Carter\'s Blog Logo',
+          alt: "Carter's Blog Logo",
           src: 'img/pencil-cat.jpg',
         },
         items: [
-          {to: '/home', label: 'Home', position: 'left'},
-          {to: 'https://carterhaney.dev', label: 'Main Website', position: 'left'},
+          {
+            href: 'https://carterhaney.dev',
+            label: 'Main Website',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/carterleehaney',
+            label: 'GitHub',
+            position: 'right',
+          },
         ],
       },
       footer: {
         style: 'dark',
         links: [
           {
-            title: 'Social Media',
+            title: 'Connect',
             items: [
               {
                 label: 'LinkedIn',
@@ -105,21 +110,26 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/carterleehaney',
               },
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/carterleehaney',
+              },
             ],
           },
           {
-            title: 'Links',
+            title: 'More',
             items: [
               {
-                label: 'My Website',
+                label: 'Main Website',
                 href: 'https://carterhaney.dev',
               },
             ],
           },
         ],
+        copyright: `© ${new Date().getFullYear()} Carter Haney`,
       },
       prism: {
-        theme: prismThemes.github,
+        theme: prismThemes.dracula,
         darkTheme: prismThemes.dracula,
       },
     }),

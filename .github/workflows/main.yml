@@ -1,0 +1,43 @@
+name: Deploy to blog.carterhaney.dev
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Deploy to server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.MAIN_KEY }}
+        run: |
+          # Set up SSH key
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          
+          # Add server to known hosts
+          ssh-keyscan 150.252.181.95 >> ~/.ssh/known_hosts
+          
+          # SSH into server and deploy
+          ssh -i ~/.ssh/deploy_key carter@150.252.181.95 << 'ENDSSH'
+            set -e
+            
+            cd ~/blog.carterhaney.dev
+            
+            # Pull latest changes
+            git pull origin main
+            
+            # Rebuild and restart container
+            docker compose down
+            docker compose up -d --build
+            
+            # Clean up old images
+            docker image prune -f
+            
+            echo "Deployment completed successfully!"
+          ENDSSH
